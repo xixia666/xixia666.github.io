@@ -1,39 +1,39 @@
 # ===== 站点配置 =====
-title: xixia666
-subtitle: "逆向工程 & API 工具开发"
+title: SKY·紫罗兰
+subtitle: "Android 悬浮球工具 · ImGui 渲染"
 
 # 卡片信息
-name: xixia666
-signature: "代码 & 逆向 & 输出"
+name: SKY·紫罗兰
+signature: "· 妹妹说紫色很有韵味 ·"
 avatar: https://avatars.githubusercontent.com/u/75162629?v=4
 
 # 背景动画
 background: true
 
 # 版权
-copyright: "© 2026 xixia666. 保留所有权利."
+copyright: "© 2026 SKY·紫罗兰. 保留所有权利."
 
 # 快捷链接（卡片按钮）
 links:
   - text: 加入Q群
-    href: https://qm.qq.com/q/your-group
-    icon: grid
+    href: https://qm.qq.com/cgi-bin/qm/qr?from=app&p=android&jump_from=webapi&k=ESZ06CwqpW4RvJAGHzOyx6HV7Ou7LmqM
+    icon: qq
     target: _blank
   - text: 加入频道
-    href: https://t.me/your-channel
-    icon: grid
+    href: https://t.me/+1r0QiXcNJSowOTdl
+    icon: send
     target: _blank
   - text: 加入电报
-    href: https://t.me/your-telegram
-    icon: info
+    href: https://t.me/+1r0QiXcNJSowOTdl
+    icon: send
     target: _blank
   - text: 下载链接
-    href: https://github.com/xixia666/xixia666.github.io/releases
-    icon: code
+    href: https://gitee.com/jimi333/violet/releases
+    icon: download
     target: _blank
   - text: 打赏一下
     href: https://github.com/xixia666
-    icon: email
+    icon: heart
     target: _blank
 
 # 页脚链接
