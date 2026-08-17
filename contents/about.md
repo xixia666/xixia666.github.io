@@ -1,5 +1,5 @@
 
-**SKY·紫罗兰** 是一款 Android 悬浮球工具应用，使用 OpenGL ES 3.0 + ImGui 渲染界面，支持悬浮窗菜单、动态功能模块热更新和卡密验证。
+**SKY·紫罗兰** 是一款 Android 悬浮球工具应用，使用 OpenGL ES 3.0 + ImGui 渲染界面。
 
 #### 功能概览
 
@@ -15,18 +15,4 @@
 - **地图任意门**：大地图分组传送
 - **主题定制**：主题选择、背景透明度、前景特效
 
-#### 技术栈
-
-- **语言**: C/C++ (JNI) / Java
-- **渲染**: OpenGL ES 3.0 + ImGui
-- **架构**: 悬浮窗 Service + GLSurfaceView + Native Bridge
-- **热更新**: feature.so / ui.so 远程下载与 MD5 校验
-- **最低版本**: Android 5.0 (API 21)
-
 → [下载最新版本](https://gitee.com/jimi333/violet/releases)
-
-→ [加入 QQ 群](https://qm.qq.com/cgi-bin/qm/qr?from=app&p=android&jump_from=webapi&k=ESZ06CwqpW4RvJAGHzOyx6HV7Ou7LmqM)
-
-→ [加入 Telegram](https://t.me/+1r0QiXcNJSowOTdl)
-
-QQ 群号：**1098708064**
