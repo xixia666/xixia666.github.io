@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>xixia666 · GitHub</title>
+  <meta name="description" content="xixia666's personal homepage on GitHub">
+  <link rel="icon" href="https://avatars.githubusercontent.com/u/75162629?v=4">
+  <style>
+    *{margin:0;padding:0;box-sizing:border-box}
+    :root{--bg:#0d1117;--card:#161b22;--border:#30363d;--text:#c9d1d9;--text-muted:#8b949e;--accent:#58a6ff;--accent2:#f78166;--green:#3fb950;--purple:#bc8cff}
+    body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;background:var(--bg);color:var(--text);line-height:1.6;overflow-x:hidden}
+    a{color:var(--accent);text-decoration:none}
+    a:hover{text-decoration:underline}
+
+    /* ---- Hero ---- */
+    .hero{text-align:center;padding:100px 20px 60px;position:relative;overflow:hidden}
+    .hero::before{content:'';position:absolute;top:0;left:50%;transform:translateX(-50%);width:600px;height:600px;background:radial-gradient(circle,rgba(88,166,255,.08) 0%,transparent 70%);pointer-events:none}
+    .avatar-wrap{width:160px;height:160px;margin:0 auto 24px;position:relative}
+    .avatar{width:100%;height:100%;border-radius:50%;border:4px solid var(--border);box-shadow:0 0 0 4px rgba(88,166,255,.15);transition:box-shadow .4s,transform .4s}
+    .avatar:hover{transform:scale(1.05);box-shadow:0 0 0 4px rgba(88,166,255,.35)}
+    .status-dot{position:absolute;bottom:12px;right:12px;width:20px;height:20px;border-radius:50%;background:var(--green);border:3px solid var(--bg);animation:pulse 2s infinite}
+    @keyframes pulse{0%,100%{opacity:1}50%{opacity:.5}}
+    .hero h1{font-size:2.8rem;font-weight:700;background:linear-gradient(135deg,var(--accent),var(--purple));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:8px}
+    .hero .tagline{font-size:1.15rem;color:var(--text-muted);max-width:560px;margin:0 auto 28px}
+    .badges{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+    .badge{display:inline-flex;align-items:center;gap:6px;padding:8px 16px;border:1px solid var(--border);border-radius:20px;font-size:.85rem;color:var(--text-muted);transition:all .3s}
+    .badge:hover{border-color:var(--accent);color:var(--accent);text-decoration:none}
+    .badge svg{width:16px;height:16px}
+
+    /* ---- Stats ---- */
+    .stats{display:flex;gap:24px;justify-content:center;flex-wrap:wrap;padding:0 20px 60px}
+    .stat{text-align:center;min-width:120px}
+    .stat .num{font-size:2rem;font-weight:700;color:var(--accent)}
+    .stat .label{font-size:.8rem;color:var(--text-muted);text-transform:uppercase;letter-spacing:1px;margin-top:4px}
+
+    /* ---- Section ---- */
+    .section{max-width:800px;margin:0 auto;padding:0 20px 60px}
+    .section h2{font-size:1.5rem;font-weight:600;margin-bottom:24px;display:flex;align-items:center;gap:10px;color:var(--text)}
+    .section h2::before{content:'';width:4px;height:24px;border-radius:2px;background:linear-gradient(180deg,var(--accent),var(--purple))}
+
+    /* ---- About ---- */
+    .about-card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:28px 32px}
+    .about-card p{color:var(--text-muted);margin-bottom:12px;font-size:1rem;line-height:1.8}
+    .about-card p:last-child{margin-bottom:0}
+    .about-card .tech{display:flex;gap:8px;flex-wrap:wrap;margin-top:16px}
+    .tech span{padding:4px 12px;border-radius:6px;font-size:.8rem;background:rgba(88,166,255,.1);color:var(--accent);border:1px solid rgba(88,166,255,.2)}
+
+    /* ---- Projects ---- */
+    .project-grid{display:grid;grid-template-columns:1fr;gap:16px}
+    @media(min-width:640px){.project-grid{grid-template-columns:1fr 1fr}}
+    .project{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:22px 24px;transition:border-color .3s,transform .3s;text-decoration:none;color:inherit;display:block}
+    .project:hover{border-color:var(--accent);transform:translateY(-3px);text-decoration:none}
+    .project .proj-header{display:flex;align-items:center;gap:10px;margin-bottom:10px}
+    .project .proj-icon{width:28px;height:28px;border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0}
+    .project h3{font-size:1.1rem;font-weight:600;color:var(--accent)}
+    .project p{font-size:.88rem;color:var(--text-muted);margin-bottom:14px}
+    .project .proj-meta{display:flex;gap:16px;font-size:.8rem;color:var(--text-muted)}
+    .project .proj-meta span{display:flex;align-items:center;gap:5px}
+    .dot{width:12px;height:12px;border-radius:50%;display:inline-block}
+    .fork-tag{font-size:.7rem;padding:2px 8px;border-radius:4px;background:rgba(139,148,159,.15);color:var(--text-muted);margin-left:auto}
+
+    /* ---- Footer ---- */
+    footer{text-align:center;padding:40px 20px;border-top:1px solid var(--border);margin-top:40px}
+    footer .links{display:flex;gap:20px;justify-content:center;margin-bottom:16px}
+    footer .links a{width:40px;height:40px;border-radius:50%;border:1px solid var(--border);display:flex;align-items:center;justify-content:center;transition:all .3s}
+    footer .links a:hover{border-color:var(--accent);color:var(--accent);transform:translateY(-2px);text-decoration:none}
+    footer .copyright{font-size:.82rem;color:var(--text-muted)}
+    footer .copyright a{color:var(--text-muted)}
+
+    /* ---- Scroll Animation ---- */
+    .reveal{opacity:0;transform:translateY(30px);transition:opacity .6s,transform .6s}
+    .reveal.visible{opacity:1;transform:translateY(0)}
+
+    /* ---- Loading Bar ---- */
+    #loadbar{position:fixed;top:0;left:0;height:3px;width:0;background:linear-gradient(90deg,var(--accent),var(--purple));z-index:999;transition:width .3s}
+  </style>
+</head>
+<body>
+
+  <div id="loadbar"></div>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="avatar-wrap">
+      <img class="avatar" src="https://avatars.githubusercontent.com/u/75162629?v=4" alt="xixia666">
+      <span class="status-dot" title="Online"></span>
+    </div>
+    <h1>xixia666</h1>
+    <p class="tagline">Hello World 👋 Welcome to my corner of the internet.</p>
+    <div class="badges">
+      <a class="badge" href="https://github.com/xixia666" target="_blank">
+        <svg viewBox="0 0 16 16" fill="currentColor" width="16" height="16"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>
+        Follow @xixia666
+      </a>
+      <span class="badge">
+        <svg viewBox="0 0 16 16" fill="currentColor" width="16" height="16"><path d="M1.679 7.356a3.61 3.61 0 0 1 1.018 2.515c0 1.066-.382 2.02-1.146 2.862L0 12.43l.593.314c.63.333 1.234.5 1.801.5.667 0 1.292-.202 1.857-.604.566-.402 1.014-.961 1.34-1.674l.604-1.312.068-.143.068-.143h5.262l-2.33-6.091-1.645 4.093L3.815 6.14 5.946 4.5l1.645-.748.685 1.453 1.59 4.277c.227.6.52 1.093.88 1.477.36.384.792.633 1.297.748.505.114.99.114 1.455 0 .464-.115.847-.3 1.148-.557l-.293-.498a3.61 3.61 0 0 1-1.018-2.515c0-1.066.382-2.02 1.146-2.862L16 3.57l-.593-.314c-.63-.333-1.234-.5-1.801-.5-.667 0-1.292.202-1.857.604-.566.402-1.014.961-1.34 1.674l-.604 1.312-.068.143-.068.143H4.407l2.33 6.091 1.645-4.093 3.465 1.836L8.547 9.5l-1.645.748-.685-1.453-1.59-4.277c-.227-.6-.52-1.093-.88-1.477-.36-.384-.792-.633-1.297-.748-.505-.114-.99-.114-1.455 0-.464.115-.847.3-1.148.557l.293.498z"/></svg>
+        Since 2020
+      </span>
+      <span class="badge" style="color:var(--green);border-color:rgba(63,185,80,.3)">
+        <span style="width:8px;height:8px;border-radius:50%;background:var(--green);display:inline-block"></span>
+        Available for work
+      </span>
+    </div>
+  </section>
+
+  <!-- Stats -->
+  <section class="stats reveal">
+    <div class="stat"><div class="num" id="repo-count">5</div><div class="label">Repositories</div></div>
+    <div class="stat"><div class="num" id="follower-count">0</div><div class="label">Followers</div></div>
+    <div class="stat"><div class="num" id="following-count">3</div><div class="label">Following</div></div>
+    <div class="stat"><div class="num" style="color:var(--accent2)">4+</div><div class="label">Years</div></div>
+  </section>
+
+  <!-- About -->
+  <section class="section reveal">
+    <h2>About</h2>
+    <div class="about-card">
+      <p>Hi! I'm <strong style="color:var(--text)">xixia666</strong>, a developer passionate about reverse engineering, Android tools, and building cool things.</p>
+      <p>I explore the intersection of security and software — from runtime IL2CPP dumping to API gateways and video processing. Always learning, always building.</p>
+      <div class="tech">
+        <span>Android</span>
+        <span>C/C++</span>
+        <span>Python</span>
+        <span>API Gateway</span>
+        <span>Reverse Engineering</span>
+        <span>ImGui</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Projects -->
+  <section class="section reveal">
+    <h2>Projects</h2>
+    <div class="project-grid">
+      <a class="project" href="https://github.com/xixia666/grok2api" target="_blank">
+        <div class="proj-header">
+          <div class="proj-icon" style="background:rgba(88,166,255,.15);color:var(--accent)">⚡</div>
+          <h3>grok2api</h3>
+          <span class="fork-tag">Fork</span>
+        </div>
+        <p>Multi-account API gateway for Grok Build, Grok Web, and Grok Console.</p>
+        <div class="proj-meta">
+          <span><span class="dot" style="background:var(--accent)"></span>MIT License</span>
+          <span>Updated Aug 2026</span>
+        </div>
+      </a>
+
+      <a class="project" href="https://github.com/xixia666/Zygisk-Il2CppDumper" target="_blank">
+        <div class="proj-header">
+          <div class="proj-icon" style="background:rgba(247,129,102,.15);color:var(--accent2)">🔧</div>
+          <h3>Zygisk-Il2CppDumper</h3>
+          <span class="fork-tag">Fork</span>
+        </div>
+        <p>Using Zygisk to dump il2cpp data at runtime for Android game analysis.</p>
+        <div class="proj-meta">
+          <span><span class="dot" style="background:var(--accent2)"></span>MIT License</span>
+          <span>C++ / Native</span>
+        </div>
+      </a>
+
+      <a class="project" href="https://github.com/xixia666/video_spider" target="_blank">
+        <div class="proj-header">
+          <div class="proj-icon" style="background:rgba(188,140,255,.15);color:var(--purple)">🎬</div>
+          <h3>video_spider</h3>
+          <span class="fork-tag">Fork</span>
+        </div>
+        <p>短视频去水印工具，支持抖音、快手、微视、微博等数十个平台。</p>
+        <div class="proj-meta">
+          <span><span class="dot" style="background:var(--purple)"></span>Python</span>
+          <span>Updated 2023</span>
+        </div>
+      </a>
+
+      <a class="project" href="https://github.com/xixia666/ImGui-Tool-Style_Gui" target="_blank">
+        <div class="proj-header">
+          <div class="proj-icon" style="background:rgba(63,185,80,.15);color:var(--green)">🎨</div>
+          <h3>ImGui-Tool-Style_Gui</h3>
+          <span class="fork-tag">Fork</span>
+        </div>
+        <p>Stylish ImGui-based tool GUI library for building clean internal tools.</p>
+        <div class="proj-meta">
+          <span><span class="dot" style="background:var(--green)"></span>C++ / ImGui</span>
+          <span>Updated 2022</span>
+        </div>
+      </a>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="links">
+      <a href="https://github.com/xixia666" target="_blank" title="GitHub">
+        <svg viewBox="0 0 16 16" fill="currentColor" width="20" height="20"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>
+      </a>
+      <a href="mailto:2538998004@qq.com" title="Email">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+      </a>
+    </div>
+    <p class="copyright">© 2026 <a href="https://github.com/xixia666">xixia666</a> · Powered by <a href="https://pages.github.com">GitHub Pages</a> · Built with ❤️</p>
+  </footer>
+
+  <script>
+    // Scroll reveal
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+    // Loading bar
+    const loadbar = document.getElementById('loadbar');
+    let progress = 0;
+    const timer = setInterval(() => {
+      progress += Math.random() * 20;
+      if (progress >= 100) { progress = 100; clearInterval(timer); loadbar.style.width = '0'; }
+      loadbar.style.width = progress + '%';
+    }, 100);
+
+    // Fetch live stats
+    fetch('https://api.github.com/users/xixia666')
+      .then(r => r.json())
+      .then(d => {
+        if (!d || d.message) return;
+        document.getElementById('repo-count').textContent = d.public_repos || 5;
+        document.getElementById('follower-count').textContent = d.followers ?? 0;
+        document.getElementById('following-count').textContent = d.following ?? 3;
+      })
+      .catch(() => {});
+  </script>
+</body>
+</html>
