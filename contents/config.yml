@@ -36,12 +36,8 @@ links:
     icon: heart
     target: _blank
 
-# 页脚链接
-footer-links:
-  - text: GitHub
-    href: https://github.com/xixia666
-  - text: 许可证
-    href: https://github.com/xixia666/xixia666.github.io/blob/main/LICENSE
+# 页脚链接（不做跳转）
+footer-links: []
 
 # 内容分区
 sections:
