@@ -12,7 +12,6 @@
     info: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>',
     email: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>',
     code: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 18l6-6-6-6M8 6l-6 6 6 6"/></svg>',
-    mail: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>',
     heart: '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>',
     download: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>',
     send: '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/></svg>'
@@ -41,7 +40,6 @@
     links.forEach(function (link, i) {
       var li = document.createElement('li');
       if (i === 0) {
-        // 前两个放进同一个 li 横向并排
         li.className = 'row-pair';
         var a1 = document.createElement('a');
         a1.href = links[0].href;
@@ -64,11 +62,12 @@
         if (link.target) a.target = link.target;
         a.setAttribute('aria-label', link.text);
         var iconKey = link.icon || 'info';
+        // 智能图标匹配
         if (link.text.indexOf('打赏') !== -1) iconKey = 'heart';
         if (link.text.indexOf('下载') !== -1) iconKey = 'download';
         if (link.text.indexOf('电报') !== -1) iconKey = 'send';
         if (link.text.indexOf('Q群') !== -1 || link.text.indexOf('QQ') !== -1) iconKey = 'qq';
-        if (link.text.indexOf('频道') !== -1) iconKey = 'send';
+        if (link.text.indexOf('频道') !== -1) iconKey = 'grid';
         a.innerHTML = (ICONS[iconKey] || ICONS.info) + '<span>' + link.text + '</span>';
         li.appendChild(a);
         ul.appendChild(li);
