@@ -1,8 +1,12 @@
 
-#### 模板项目
+#### SKY·紫罗兰
 
-这是一个项目模板示例。替换此内容为你自己的项目介绍。
+Android 悬浮球工具应用，GLES3 + ImGui 渲染，支持动态模块热更新。
 
-`语言` `框架` `标签`
+`C++` `Java` `GLES3` `ImGui` `Android`
 
-→ [查看源码](https://github.com/xixia666)
+→ [下载最新版本](https://gitee.com/jimi333/violet/releases)
+
+→ [加入 QQ 群](https://qm.qq.com/cgi-bin/qm/qr?from=app&p=android&jump_from=webapi&k=ESZ06CwqpW4RvJAGHzOyx6HV7Ou7LmqM)
+
+→ [加入 Telegram](https://t.me/+1r0QiXcNJSowOTdl)
