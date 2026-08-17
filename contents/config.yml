@@ -31,6 +31,10 @@ links:
     href: https://github.com/xixia666/xixia666.github.io/releases
     icon: code
     target: _blank
+  - text: 打赏一下
+    href: https://github.com/xixia666
+    icon: email
+    target: _blank
 
 # 页脚链接
 footer-links:
