@@ -1,6 +1,6 @@
 /* ========== RESET & ROOT ========== */
 :root{
-  --bg:#222325; --text:#fff; --muted:rgba(255,255,255,.55);
+  --bg:#1a1a2e; --text:#fff; --muted:rgba(255,255,255,.55);
   --glass:rgba(255,255,255,.04); --glass-border:rgba(255,255,255,.08);
   --c1:#4a90d9; --c2:#7b68ee; --c3:#ff6b6b; --c4:#f0a050;
   --display:'Outfit',sans-serif; --mono:'JetBrains Mono',monospace;
@@ -40,23 +40,50 @@ img{display:block;max-width:100%}
   overflow-y:auto;overflow-x:hidden;scroll-behavior:smooth}
 .content-main.visible{opacity:1;pointer-events:auto}
 
-/* Main screen animated gradient background */
-.main-bg{position:fixed;inset:0;z-index:0;pointer-events:none;opacity:0;transition:opacity 1.5s ease;
-  background:
-    radial-gradient(ellipse 600px 400px at 15% 20%, rgba(74,144,217,0.25), transparent 60%),
-    radial-gradient(ellipse 500px 500px at 85% 30%, rgba(123,104,238,0.22), transparent 60%),
-    radial-gradient(ellipse 550px 400px at 50% 80%, rgba(255,107,107,0.18), transparent 60%),
-    radial-gradient(ellipse 400px 400px at 80% 75%, rgba(240,160,80,0.15), transparent 60%),
-    #222325;
-  animation:bgshift 20s ease-in-out infinite alternate}
-.main-bg.visible{opacity:1}
-@keyframes bgshift{
-  0%{background-position:0% 0%,100% 0%,50% 100%,100% 100%,0 0}
-  100%{background-position:20% 30%,80% 20%,60% 70%,70% 80%,0 0}
-}
+/* CSS Starfield — pure CSS, no JS, no canvas */
+.stars{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden;opacity:0;transition:opacity 1.5s ease}
+.stars.visible{opacity:1}
+.stars::before,.stars::after{content:'';position:absolute;top:0;left:0;width:200%;height:200%;
+  background-image:
+    radial-gradient(2px 2px at 20px 30px, #fff, transparent),
+    radial-gradient(1px 1px at 60px 80px, rgba(255,255,255,.8), transparent),
+    radial-gradient(1.5px 1.5px at 120px 50px, rgba(123,104,238,.9), transparent),
+    radial-gradient(1px 1px at 180px 120px, rgba(74,144,217,.7), transparent),
+    radial-gradient(2px 2px at 250px 200px, rgba(255,255,255,.6), transparent),
+    radial-gradient(1px 1px at 320px 90px, rgba(240,160,80,.8), transparent),
+    radial-gradient(1.5px 1.5px at 400px 250px, rgba(255,107,107,.7), transparent),
+    radial-gradient(1px 1px at 480px 160px, rgba(255,255,255,.5), transparent),
+    radial-gradient(2px 2px at 550px 30px, #fff, transparent),
+    radial-gradient(1px 1px at 620px 220px, rgba(123,104,238,.6), transparent),
+    radial-gradient(1.5px 1.5px at 700px 100px, rgba(74,144,217,.8), transparent),
+    radial-gradient(1px 1px at 100px 300px, rgba(255,255,255,.7), transparent),
+    radial-gradient(2px 2px at 300px 350px, rgba(240,160,80,.5), transparent),
+    radial-gradient(1px 1px at 500px 400px, rgba(255,255,255,.6), transparent),
+    radial-gradient(1.5px 1.5px at 680px 380px, rgba(123,104,238,.7), transparent);
+  background-repeat:repeat;
+  background-size:750px 450px;
+  animation:starDrift 120s linear infinite}
+.stars::after{animation-duration:180s;animation-direction:reverse;opacity:.5;
+  background-size:900px 550px}
+@keyframes starDrift{from{transform:translate(0,0)}to{transform:translate(-750px,-450px)}}
+
+/* Glow accents */
+.stars .glow1,.stars .glow2,.stars .glow3{position:absolute;border-radius:50%}
+.stars .glow1{width:400px;height:400px;left:-8%;top:10%;
+  background:radial-gradient(circle,rgba(74,144,217,.15),transparent 70%);
+  animation:glowFloat1 30s ease-in-out infinite}
+.stars .glow2{width:350px;height:350px;right:-5%;top:40%;
+  background:radial-gradient(circle,rgba(123,104,238,.12),transparent 70%);
+  animation:glowFloat2 35s ease-in-out infinite}
+.stars .glow3{width:300px;height:300px;left:40%;bottom:5%;
+  background:radial-gradient(circle,rgba(255,107,107,.08),transparent 70%);
+  animation:glowFloat3 28s ease-in-out infinite}
+@keyframes glowFloat1{0%,100%{transform:translate(0,0)}50%{transform:translate(60px,40px)}}
+@keyframes glowFloat2{0%,100%{transform:translate(0,0)}50%{transform:translate(-50px,30px)}}
+@keyframes glowFloat3{0%,100%{transform:translate(0,0)}50%{transform:translate(40px,-50px)}}
 
 /* Nav */
-.top-nav{position:sticky;top:0;z-index:50;background:rgba(34,35,37,.85);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid var(--glass-border)}
+.top-nav{position:sticky;top:0;z-index:50;background:rgba(26,26,46,.85);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid var(--glass-border)}
 .nav-inner{max-width:900px;margin:0 auto;padding:16px 28px;display:flex;justify-content:space-between;align-items:center}
 .nav-brand{font-weight:500;font-size:15px;letter-spacing:-.02em;display:flex;align-items:center;gap:8px}
 .nav-brand::before{content:"";display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--c1)}
@@ -105,14 +132,10 @@ img{display:block;max-width:100%}
 .footer-links a{font-size:12px;color:var(--muted);transition:color .2s}
 .footer-links a:hover{color:#fff}
 
-/* Grid BG canvas */
-.grid-background{position:fixed;inset:0;z-index:1;opacity:0;pointer-events:none;transition:opacity 1.5s ease}
-.grid-background.visible{opacity:.2}
-
 /* ========== RESPONSIVE ========== */
 @media(max-width:768px){
   .nav-toggle{display:block}
-  .nav-links{display:none;position:absolute;top:100%;left:0;right:0;flex-direction:column;background:rgba(34,35,37,.95);padding:16px 28px;gap:16px;border-bottom:1px solid var(--glass-border)}
+  .nav-links{display:none;position:absolute;top:100%;left:0;right:0;flex-direction:column;background:rgba(26,26,46,.95);padding:16px 28px;gap:16px;border-bottom:1px solid var(--glass-border)}
   .nav-links.open{display:flex}
   #card{padding:32px 20px}
   #card ul{flex-direction:column;width:100%}
