@@ -127,9 +127,6 @@
           main.classList.add('visible');
           document.body.classList.remove('site-loading');
           document.body.style.overflow = 'auto';
-          // Show starfield
-          var stars = document.getElementById('stars');
-          if (stars) stars.classList.add('visible');
           playMainAnimation();
         }
       });
@@ -174,8 +171,6 @@
         if (main) main.classList.add('visible');
         document.body.classList.remove('site-loading');
         document.body.style.overflow = 'auto';
-        var stars = document.getElementById('stars');
-        if (stars) stars.classList.add('visible');
       });
   }
 
