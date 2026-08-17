@@ -15,7 +15,7 @@
     info: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>',
     email: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>',
     code: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 18l6-6-6-6M8 6l-6 6 6 6"/></svg>',
-    mail: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>',
+    mail: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>'
   };
 
   // ---- Helpers ----
@@ -42,7 +42,6 @@
     $('#card-name').textContent = config.name || '';
     $('#card-signature').textContent = config.signature || '';
     $('#nav-brand').textContent = config.name || '';
-
     var ul = $('#card-links');
     (config.links || []).forEach(function (link) {
       var li = document.createElement('li');
@@ -119,30 +118,22 @@
     var enterBtn = $('#enterBtn');
     var intro = $('#intro');
     var main = $('#main');
-
     enterBtn.addEventListener('click', function () {
       // Fade out intro content
       anime({
         targets: [intro.querySelector('.content-inner'), intro.querySelector('.github-corner')],
-        opacity: 0,
-        duration: 400,
-        easing: 'easeOutQuad'
+        opacity: 0, duration: 400, easing: 'easeOutQuad'
       });
-
-      // Stop the WebGL fluid simulation to free GPU
+      // Stop WebGL fluid to free GPU
       var bgCanvas = document.getElementById('background');
       if (bgCanvas) {
         bgCanvas.style.transition = 'opacity 0.6s ease';
         bgCanvas.style.opacity = '0';
-        setTimeout(function() { bgCanvas.style.display = 'none'; }, 600);
+        setTimeout(function () { bgCanvas.style.display = 'none'; }, 600);
       }
-
       // Slide intro up
       anime({
-        targets: { val: 0 },
-        val: 1,
-        duration: 1000,
-        easing: 'easeInQuart',
+        targets: { val: 0 }, val: 1, duration: 1000, easing: 'easeInQuart',
         update: function (anim) {
           var p = anim.animations[0].currentValue;
           intro.style.transform = 'translateY(' + (-p * 100) + '%)';
@@ -153,6 +144,9 @@
           main.classList.add('visible');
           document.body.classList.remove('site-loading');
           document.body.style.overflow = 'auto';
+          // Show aurora background
+          var mainBg = document.getElementById('mainBg');
+          if (mainBg) mainBg.classList.add('visible');
           playMainAnimation();
         }
       });
@@ -167,13 +161,9 @@
       .add({ targets: '#card h1', opacity: [0, 1], translateY: [20, 0], duration: 500 }, '-=400')
       .add({ targets: '#card h2', opacity: [0, 1], translateY: [20, 0], duration: 500 }, '-=400')
       .add({ targets: '#card li', opacity: [0, 1], translateY: [20, 0], duration: 500, delay: anime.stagger(80) }, '-=400');
-
-    // Grid background for main screen
+    // Grid background
     var canvas = $('#gridCanvas');
-    if (canvas) {
-      canvas.classList.add('visible');
-      drawGrid(canvas);
-    }
+    if (canvas) { canvas.classList.add('visible'); drawGrid(canvas); }
   }
 
   // ---- Grid background ----
@@ -201,15 +191,12 @@
   function setupNavToggle() {
     var toggle = $('#navToggle');
     var links = $('#nav-links');
-    if (toggle) {
-      toggle.addEventListener('click', function () { links.classList.toggle('open'); });
-    }
+    if (toggle) toggle.addEventListener('click', function () { links.classList.toggle('open'); });
   }
 
   // ---- Init ----
   function init() {
     document.body.style.overflow = 'hidden';
-
     loadConfig()
       .then(function (config) {
         renderIntro(config);
@@ -225,13 +212,14 @@
       })
       .catch(function (err) {
         console.error('Init failed:', err);
-        // Fallback: show main directly
         var intro = $('#intro');
         var main = $('#main');
         if (intro) intro.style.display = 'none';
         if (main) main.classList.add('visible');
         document.body.classList.remove('site-loading');
         document.body.style.overflow = 'auto';
+        var mainBg = document.getElementById('mainBg');
+        if (mainBg) mainBg.classList.add('visible');
       });
   }
 
