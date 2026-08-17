@@ -5,7 +5,7 @@ subtitle: "Android 悬浮球工具 · ImGui 渲染"
 # 卡片信息
 name: SKY·紫罗兰
 signature: "· 妹妹说紫色很有韵味 ·"
-avatar: https://avatars.githubusercontent.com/u/75162629?v=4
+avatar: static/img/icon.png
 
 # 背景动画
 background: true
@@ -20,8 +20,8 @@ links:
     icon: qq
     target: _blank
   - text: 加入频道
-    href: https://t.me/+1r0QiXcNJSowOTdl
-    icon: send
+    href: https://pd.qq.com/s/en7i8nslz?b=9
+    icon: grid
     target: _blank
   - text: 加入电报
     href: https://t.me/+1r0QiXcNJSowOTdl
@@ -49,7 +49,3 @@ sections:
     nav: 关于
     title: "关于"
     icon: info
-  - id: projects
-    nav: 项目
-    title: "项目"
-    icon: code
