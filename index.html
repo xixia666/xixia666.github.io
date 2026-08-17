@@ -31,7 +31,6 @@
 
   <!-- ====== INTRO SCREEN ====== -->
   <section class="content-intro" id="intro">
-    <!-- WebGL Fluid Simulation Background -->
     <canvas id="background"></canvas>
 
     <div class="content-inner">
@@ -62,7 +61,9 @@
 
   <!-- ====== MAIN SCREEN ====== -->
   <section class="content-main" id="main">
-    <!-- Sticky Nav -->
+    <!-- Aurora background -->
+    <div class="main-bg" id="mainBg"><span class="mb1"></span><span class="mb2"></span><span class="mb3"></span></div>
+
     <nav class="top-nav" id="topNav">
       <div class="nav-inner">
         <a class="nav-brand" href="#page-top" id="nav-brand"></a>
@@ -73,7 +74,6 @@
       </div>
     </nav>
 
-    <!-- Card -->
     <div class="card-wrap">
       <div class="fade" id="card">
         <div class="card-inner">
@@ -85,10 +85,8 @@
       </div>
     </div>
 
-    <!-- Markdown Sections -->
     <main id="sections"></main>
 
-    <!-- Footer -->
     <footer class="site-footer">
       <div class="footer-inner">
         <span id="copyright"></span>
@@ -99,9 +97,8 @@
     <canvas class="grid-background" id="gridCanvas"></canvas>
   </section>
 
-  <!-- ====== WebGL Fluid Simulation ====== -->
+  <!-- WebGL Fluid Simulation -->
   <script>
-    // Fluid config (from SimonAKing/HomePage scripts.pug)
     window.config = {
       SIM_RESOLUTION: 128, DYE_RESOLUTION: 1024, CAPTURE_RESOLUTION: 512,
       DENSITY_DISSIPATION: 1, VELOCITY_DISSIPATION: 0.2, PRESSURE: 0.8,
@@ -112,13 +109,11 @@
       BLOOM_THRESHOLD: 0.8, BLOOM_SOFT_KNEE: 0.7,
       SUNRAYS: true, SUNRAYS_RESOLUTION: 196, SUNRAYS_WEIGHT: 1.0
     };
-    // Define missing globals that background.js expects from main.js
     var visibilityChangeEvent = 'visibilitychange';
     var switchPage = { switched: false };
   </script>
   <script src="https://cdn.jsdelivr.net/gh/SimonAKing/HomePage@master/src/js/background.js"></script>
 
-  <!-- Core JS -->
   <script src="static/js/app.js"></script>
 </body>
 </html>
