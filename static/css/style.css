@@ -69,13 +69,19 @@ img{display:block;max-width:100%}
 #card h1{font-size:1.6rem;font-weight:600;letter-spacing:.01em}
 #card h2{font-size:.95rem;font-weight:300;color:var(--muted)}
 
-/* Card links — 2x2 grid: 前两个横向，后两个各占一行 */
-#card ul{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:8px;width:100%}
-#card li:nth-child(3),#card li:nth-child(4){grid-column:span 2}
+/* Card links layout:
+   Row 1: [加入Q群] [加入频道]  — 2 columns
+   Row 2: [加入电报]            — full width
+   Row 3: [下载链接]            — full width
+   Row 4: [打赏一下]            — full width */
+#card ul{display:flex;flex-direction:column;gap:10px;margin-top:8px;width:100%}
+#card li{width:100%}
+#card li.row-pair{display:flex;gap:10px}
+#card li.row-pair a{flex:1}
 #card li a{display:flex;flex-direction:row;align-items:center;justify-content:center;gap:8px;padding:14px 20px;border-radius:14px;background:var(--glass);border:1px solid var(--glass-border);transition:all .3s ease;width:100%}
 #card li a:hover{background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.18);transform:translateY(-4px)}
 #card li a:active{transform:scale(.97)}
-#card li a svg{width:24px;height:24px;fill:var(--text);opacity:.85;flex-shrink:0}
+#card li a svg{width:22px;height:22px;fill:var(--text);opacity:.85;flex-shrink:0}
 #card li a span{font-size:.82rem;letter-spacing:.03em;color:var(--text)}
 
 /* Markdown Sections */
@@ -109,7 +115,5 @@ img{display:block;max-width:100%}
   .nav-links{display:none;position:absolute;top:100%;left:0;right:0;flex-direction:column;background:rgba(26,26,46,.95);padding:16px 28px;gap:16px;border-bottom:1px solid var(--glass-border)}
   .nav-links.open{display:flex}
   #card{padding:32px 20px}
-  #card ul{grid-template-columns:1fr}
-  #card li:nth-child(3),#card li:nth-child(4){grid-column:span 1}
   .github-corner svg{width:60px;height:60px}
 }
