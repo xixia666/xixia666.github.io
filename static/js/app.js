@@ -121,13 +121,21 @@
     var main = $('#main');
 
     enterBtn.addEventListener('click', function () {
-      // Fade out intro
+      // Fade out intro content
       anime({
         targets: [intro.querySelector('.content-inner'), intro.querySelector('.github-corner')],
         opacity: 0,
         duration: 400,
         easing: 'easeOutQuad'
       });
+
+      // Stop the WebGL fluid simulation to free GPU
+      var bgCanvas = document.getElementById('background');
+      if (bgCanvas) {
+        bgCanvas.style.transition = 'opacity 0.6s ease';
+        bgCanvas.style.opacity = '0';
+        setTimeout(function() { bgCanvas.style.display = 'none'; }, 600);
+      }
 
       // Slide intro up
       anime({
@@ -160,7 +168,7 @@
       .add({ targets: '#card h2', opacity: [0, 1], translateY: [20, 0], duration: 500 }, '-=400')
       .add({ targets: '#card li', opacity: [0, 1], translateY: [20, 0], duration: 500, delay: anime.stagger(80) }, '-=400');
 
-    // Grid background
+    // Grid background for main screen
     var canvas = $('#gridCanvas');
     if (canvas) {
       canvas.classList.add('visible');
