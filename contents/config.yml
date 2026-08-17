@@ -1,53 +1,53 @@
-# ===== Site Config =====
+# ===== 站点配置 =====
 title: xixia666
-subtitle: "Reverse Engineering & API Tooling"
+subtitle: "逆向工程 & API 工具开发"
 
-# Card info
+# 卡片信息
 name: xixia666
-signature: "Code & Reverse & Output"
+signature: "代码 & 逆向 & 输出"
 avatar: https://avatars.githubusercontent.com/u/75162629?v=4
 
-# Intro background animation
+# 背景动画
 background: true
 
-# Copyright
-copyright: "© 2026 xixia666. All Rights Reserved."
+# 版权
+copyright: "© 2026 xixia666. 保留所有权利."
 
-# Quick links (card grid)
+# 快捷链接
 links:
   - text: GitHub
     href: https://github.com/xixia666
     icon: github
     target: _blank
-  - text: Projects
+  - text: 项目
     href: https://github.com/xixia666?tab=repositories
     icon: grid
     target: _blank
-  - text: About
+  - text: 关于
     href: "#about"
     icon: info
-  - text: Email
+  - text: 邮箱
     href: mailto:2538998004@qq.com
     icon: email
 
-# Footer links
+# 页脚链接
 footer-links:
   - text: GitHub
     href: https://github.com/xixia666
-  - text: License
+  - text: 许可证
     href: https://github.com/xixia666/xixia666.github.io/blob/main/LICENSE
 
-# Content sections (each maps to contents/<id>.md)
+# 内容分区（每个对应 contents/<id>.md）
 sections:
   - id: about
-    nav: About
-    title: "About"
+    nav: 关于
+    title: "关于"
     icon: info
   - id: projects
-    nav: Projects
-    title: "Projects"
+    nav: 项目
+    title: "项目"
     icon: code
   - id: contact
-    nav: Contact
-    title: "Contact"
+    nav: 联系
+    title: "联系"
     icon: mail
