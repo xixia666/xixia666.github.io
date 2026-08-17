@@ -1,0 +1,53 @@
+# ===== Site Config =====
+title: xixia666
+subtitle: "Reverse Engineering & API Tooling"
+
+# Card info
+name: xixia666
+signature: "Code & Reverse & Output"
+avatar: https://avatars.githubusercontent.com/u/75162629?v=4
+
+# Intro background animation
+background: true
+
+# Copyright
+copyright: "© 2026 xixia666. All Rights Reserved."
+
+# Quick links (card grid)
+links:
+  - text: GitHub
+    href: https://github.com/xixia666
+    icon: github
+    target: _blank
+  - text: Projects
+    href: https://github.com/xixia666?tab=repositories
+    icon: grid
+    target: _blank
+  - text: About
+    href: "#about"
+    icon: info
+  - text: Email
+    href: mailto:2538998004@qq.com
+    icon: email
+
+# Footer links
+footer-links:
+  - text: GitHub
+    href: https://github.com/xixia666
+  - text: License
+    href: https://github.com/xixia666/xixia666.github.io/blob/main/LICENSE
+
+# Content sections (each maps to contents/<id>.md)
+sections:
+  - id: about
+    nav: About
+    title: "About"
+    icon: info
+  - id: projects
+    nav: Projects
+    title: "Projects"
+    icon: code
+  - id: contact
+    nav: Contact
+    title: "Contact"
+    icon: mail
