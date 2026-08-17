@@ -1,0 +1,198 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>xixia666 / WORK</title>
+<meta name="description" content="Personal portfolio of xixia666 — reverse engineering, API tooling, ImGui styling.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#FAFAFA;--bg:#FAFAFA;--fg:#09090B;--primary:#18181B;--on-primary:#FFFFFF;
+  --accent:#2563EB;--on-accent:#FFFFFF;
+  --card:#FFFFFF;--muted:#E8ECF0;--muted-fg:#475569;
+  --border:#E4E4E7;--border-strong:#09090B;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--fg);font-family:'Space Grotesk',sans-serif;font-size:16px;line-height:1.5;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+img{display:block;max-width:100%}
+button{font:inherit;cursor:pointer;background:none;border:none;color:inherit}
+.container{max-width:1280px;margin:0 auto;padding:0 24px}
+
+nav{position:sticky;top:0;z-index:50;background:var(--bg);border-bottom:2px solid var(--border-strong)}
+nav .inner{display:flex;justify-content:space-between;align-items:center;padding:18px 24px;max-width:1280px;margin:0 auto}
+nav .brand{font-family:'Archivo',sans-serif;font-weight:900;font-size:18px;letter-spacing:-0.02em;text-transform:uppercase}
+nav .links{display:flex;gap:24px;list-style:none}
+nav .links a{font-size:13px;font-weight:600;text-transform:uppercase;letter-spacing:0.06em;padding:6px 0;border-bottom:2px solid transparent}
+nav .links a:hover{border-color:var(--accent);color:var(--accent)}
+
+.hero{border-bottom:2px solid var(--border-strong);padding:80px 0 56px}
+.hero h1{font-family:'Archivo',sans-serif;font-size:clamp(3.4rem,11vw,9rem);font-weight:900;line-height:0.88;letter-spacing:-0.04em;text-transform:uppercase}
+.hero h1 .blue{color:var(--accent)}
+.hero-meta{display:grid;grid-template-columns:repeat(4,1fr);border-top:2px solid var(--border-strong);margin-top:48px}
+.hero-meta>div{padding:20px 24px;border-right:1px solid var(--border)}
+.hero-meta>div:last-child{border-right:none}
+.hero-meta .k{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--muted-fg);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:6px}
+.hero-meta .v{font-family:'Archivo',sans-serif;font-weight:800;font-size:1.4rem;letter-spacing:-0.02em}
+
+section{padding:96px 0;border-bottom:2px solid var(--border-strong)}
+.section-head{display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:56px;gap:24px}
+.section-head .index{font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--muted-fg);letter-spacing:0.06em}
+.section-head h2{font-family:'Archivo',sans-serif;font-size:clamp(2.4rem,5.5vw,4.2rem);font-weight:900;line-height:0.95;letter-spacing:-0.03em;text-transform:uppercase;margin-top:8px}
+.section-head .desc{max-width:32ch;font-size:.95rem;color:var(--muted-fg);text-align:right}
+
+.about-grid{display:grid;grid-template-columns:7fr 5fr;gap:0;border:2px solid var(--border-strong)}
+.about-text{padding:40px;border-right:2px solid var(--border-strong)}
+.about-text p{font-size:1.15rem;line-height:1.6;margin-bottom:18px}
+.about-text p strong{font-weight:700;background:var(--muted);padding:2px 6px}
+.about-side{padding:40px;display:flex;flex-direction:column;gap:20px;background:var(--card)}
+.about-side .skill-group .label{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--muted-fg);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:10px}
+.about-side .skill-group .tags{display:flex;flex-wrap:wrap;gap:6px}
+.about-side .skill-group .tags span{border:1px solid var(--border-strong);padding:5px 10px;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.04em}
+
+.projects{display:grid;grid-template-columns:1fr 1fr;gap:0;border:2px solid var(--border-strong)}
+.project{padding:32px;border:1px solid var(--border-strong);margin:-1px 0 0 -1px;background:var(--card);position:relative;display:flex;flex-direction:column;gap:16px}
+.project:hover{background:var(--muted)}
+.project .head{display:flex;justify-content:space-between;align-items:flex-start;gap:12px}
+.project .num{font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--muted-fg)}
+.project .fork{font-family:'JetBrains Mono',monospace;font-size:10px;text-transform:uppercase;letter-spacing:0.1em;border:1px solid var(--border-strong);padding:3px 8px}
+.project h3{font-family:'Archivo',sans-serif;font-size:1.8rem;font-weight:800;letter-spacing:-0.02em;line-height:1}
+.project p{color:var(--muted-fg);font-size:.95rem;line-height:1.6;flex:1}
+.project .stack{display:flex;flex-wrap:wrap;gap:6px}
+.project .stack span{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.04em;padding:3px 8px;border:1px solid var(--border);color:var(--muted-fg)}
+.project .link{display:inline-flex;align-items:center;gap:8px;font-weight:700;text-transform:uppercase;font-size:13px;letter-spacing:0.04em;color:var(--accent);border-top:1px solid var(--border);padding-top:14px;margin-top:auto}
+.project .link:hover{text-decoration:underline}
+
+.contact-block{display:grid;grid-template-columns:5fr 7fr;gap:0;border:2px solid var(--border-strong)}
+.contact-left{padding:48px;border-right:2px solid var(--border-strong);background:var(--primary);color:var(--on-primary)}
+.contact-left h2{font-family:'Archivo',sans-serif;font-size:clamp(2.6rem,5.5vw,4rem);font-weight:900;line-height:0.95;letter-spacing:-0.03em;text-transform:uppercase}
+.contact-left h2 .blue{color:var(--accent)}
+.contact-left p{margin-top:20px;font-size:1.05rem;color:rgba(255,255,255,.7);max-width:30ch}
+.contact-right{padding:48px;display:flex;flex-direction:column}
+.contact-right a{display:flex;justify-content:space-between;align-items:center;padding:20px 0;border-bottom:1px solid var(--border-strong);font-family:'Archivo',sans-serif;font-size:1.4rem;font-weight:700;letter-spacing:-0.01em;text-transform:uppercase}
+.contact-right a:last-child{border-bottom:none}
+.contact-right a:hover{color:var(--accent)}
+.contact-right a .label{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--muted-fg);text-transform:uppercase;letter-spacing:0.1em;font-weight:400}
+
+footer{padding:40px 0;text-align:center}
+footer .copyright{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--muted-fg);letter-spacing:0.1em;text-transform:uppercase}
+
+@media (max-width:768px){
+  .hero-meta{grid-template-columns:1fr 1fr}
+  .hero-meta>div:nth-child(2){border-right:none}
+  .hero-meta>div{border-bottom:1px solid var(--border)}
+  .about-grid,.contact-block{grid-template-columns:1fr}
+  .about-text{border-right:none;border-bottom:2px solid var(--border-strong)}
+  .contact-left{border-right:none;border-bottom:2px solid var(--border-strong)}
+  .projects{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<nav>
+<div class="inner">
+  <a class="brand" href="#hero">xixia666</a>
+  <div class="links">
+    <a href="#about">About</a>
+    <a href="#projects">Projects</a>
+    <a href="#contact">Contact</a>
+    <a href="https://github.com/xixia666" target="_blank" rel="noopener">GitHub</a>
+  </div>
+</div>
+</nav>
+
+<header class="hero container" id="hero">
+  <h1>xixia666<br><span class="blue">BUILDS / 2026</span></h1>
+  <div class="hero-meta">
+    <div><div class="k">Role</div><div class="v">Reverse Engineer</div></div>
+    <div><div class="k">Focus</div><div class="v">Android — IL2CPP — API</div></div>
+    <div><div class="k">Since</div><div class="v">2020 — 5y on GitHub</div></div>
+    <div><div class="k">Status</div><div class="v" style="color:var(--accent)">Open to work</div></div>
+  </div>
+</header>
+
+<section id="about" class="container">
+  <div class="section-head">
+    <div><div class="index">01 / ABOUT</div><h2>About</h2></div>
+    <p class="desc">No frills. Just the work, the stack, and what drives it.</p>
+  </div>
+  <div class="about-grid">
+    <div class="about-text">
+      <p>I'm <strong>xixia666</strong> — a developer working in the seams between <strong>Android security tooling</strong> and <strong>API infrastructure</strong>.</p>
+      <p>I build Zygisk modules for runtime il2cpp analysis, multi-account API gateways, and small Python utilities that undo watermarks in short-video share URLs. Most of what I ship started as something I needed myself.</p>
+      <p>I read kernel patches for fun, sketch UI in C++ when I'm bored, and prefer fewer dependencies over prettier abstractions.</p>
+    </div>
+    <div class="about-side">
+      <div class="skill-group"><div class="label">Languages</div><div class="tags"><span>C</span><span>C++</span><span>Python</span><span>JS</span><span>Bash</span></div></div>
+      <div class="skill-group"><div class="label">Frameworks</div><div class="tags"><span>Zygisk</span><span>ImGui</span><span>FastAPI</span></div></div>
+      <div class="skill-group"><div class="label">Domains</div><div class="tags"><span>RE</span><span>IL2CPP</span><span>API Gateway</span><span>Android</span></div></div>
+      <div class="skill-group"><div class="label">Currently</div><div class="tags"><span>Grok API gateway</span><span>internal tool UI</span></div></div>
+    </div>
+  </div>
+</section>
+
+<section id="projects" class="container">
+  <div class="section-head">
+    <div><div class="index">02 / PROJECTS</div><h2>Selected work</h2></div>
+    <p class="desc">Four public repos. Forks are forks — the originals were worth extending.</p>
+  </div>
+  <div class="projects">
+    <article class="project">
+      <div class="head"><span class="num">001</span><span class="fork">Fork — MIT</span></div>
+      <h3>grok2api</h3>
+      <p>Multi-account API gateway for Grok Build, Grok Web, and Grok Console. Aggregates rate-limited accounts behind a single OpenAI-compatible endpoint with failover and rotation.</p>
+      <div class="stack"><span>python</span><span>FastAPI</span><span>openai-compat</span></div>
+      <a class="link" href="https://github.com/xixia666/grok2api" target="_blank" rel="noopener">View source <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M9 7h8v8"/></svg></a>
+    </article>
+    <article class="project">
+      <div class="head"><span class="num">002</span><span class="fork">Fork — MIT</span></div>
+      <h3>Zygisk-Il2CppDumper</h3>
+      <p>Using Zygisk to dump il2cpp metadata at runtime. Hooks the loader before obfuscation applies, recovering type/method/field names from protected Unity games without static unpacking.</p>
+      <div class="stack"><span>c++</span><span>zygisk</span><span>il2cpp</span><span>android</span></div>
+      <a class="link" href="https://github.com/xixia666/Zygisk-Il2CppDumper" target="_blank" rel="noopener">View source <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M9 7h8v8"/></svg></a>
+    </article>
+    <article class="project">
+      <div class="head"><span class="num">003</span><span class="fork">Fork</span></div>
+      <h3>video_spider</h3>
+      <p>Short video watermark removal across Douyin, Kuaishou, Weishi, Weibo, Oasis, and 20+ platforms. Reverse-engineers share URLs to extract clean source streams.</p>
+      <div class="stack"><span>python</span><span>requests</span><span>share-url</span></div>
+      <a class="link" href="https://github.com/xixia666/video_spider" target="_blank" rel="noopener">View source <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M9 7h8v8"/></svg></a>
+    </article>
+    <article class="project">
+      <div class="head"><span class="num">004</span><span class="fork">Fork</span></div>
+      <h3>ImGui-Tool-Style_Gui</h3>
+      <p>A styling reference for ImGui-based internal tools — clean palettes, sane spacing, components that don't look like debug overlays. Useful for tools you actually want to ship.</p>
+      <div class="stack"><span>c++</span><span>imgui</span><span>styling</span></div>
+      <a class="link" href="https://github.com/xixia666/ImGui-Tool-Style_Gui" target="_blank" rel="noopener">View source <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M9 7h8v8"/></svg></a>
+    </article>
+  </div>
+</section>
+
+<section id="contact" class="container">
+  <div class="section-head">
+    <div><div class="index">03 / CONTACT</div><h2>Get in touch</h2></div>
+    <p class="desc">Pick a channel. I read everything, usually within a day.</p>
+  </div>
+  <div class="contact-block">
+    <div class="contact-left">
+      <h2>LET'S<br><span class="blue">TALK</span></h2>
+      <p>Open to collaboration on Android security tooling, API gateways, or anything that needs IL2CPP-dumper-level patience.</p>
+    </div>
+    <div class="contact-right">
+      <a href="mailto:2538998004@qq.com"><span>Email</span><span class="label">2538998004@qq.com —</span></a>
+      <a href="https://github.com/xixia666" target="_blank" rel="noopener"><span>GitHub</span><span class="label">@xixia666 —</span></a>
+      <a href="https://github.com/xixia666?tab=repositories" target="_blank" rel="noopener"><span>Repos</span><span class="label">/repositories —</span></a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p class="copyright">© 2026 xixia666 — Built with restraint — No tracking, no cookies</p>
+</footer>
+
+</body>
+</html>
