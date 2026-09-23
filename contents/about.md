@@ -15,4 +15,4 @@
 - **地图任意门**：大地图分组传送
 - **主题定制**：主题选择、背景透明度、前景特效
 
-→ [下载最新版本](https://gitee.com/jimi333/violet/releases)
+→ [下载最新版本](https://1812851068.share.123pan.cn/123pan/MwWKVv-Uktj)
