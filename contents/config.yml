@@ -28,7 +28,7 @@ links:
     icon: send
     target: _blank
   - text: 下载链接
-    href: https://1812851068.share.123pan.cn/123pan/MwWKVv-Uktj
+    href: https://1812851068.mshare.123pan.cn/123pan/MwWKVv-Uktj
     icon: download
     target: _blank
   - text: 打赏一下
@@ -38,6 +38,37 @@ links:
 
 # 页脚链接（不做跳转）
 footer-links: []
+
+# 网盘下载
+downloads:
+  title: 网盘下载
+  subtitle: 选择你常用的网盘，点击卡片即可跳转
+  items:
+    - name: 百度网盘
+      note: "提取码 6f66"
+      href: https://pan.baidu.com/s/18pFD1ezmXjDpGtYzOLSQOQ?pwd=6f66
+      badge: 百度
+      color: "#2932E1"
+    - name: 夸克网盘
+      note: "极速下载"
+      href: https://pan.quark.cn/s/06e00d5c63f4
+      badge: 夸克
+      color: "#1677FF"
+    - name: UC 网盘
+      note: "免登录查看"
+      href: https://drive.uc.cn/s/3d8777dd95204?public=1
+      badge: UC
+      color: "#FF6A00"
+    - name: 移动云盘
+      note: "139 云盘"
+      href: https://yun.139.com/shareweb/#/w/i/2xTrJ6cnf2y3b
+      badge: 139
+      color: "#00A9E0"
+    - name: 123 云盘
+      note: "不限速"
+      href: https://1812851068.mshare.123pan.cn/123pan/MwWKVv-Uktj
+      badge: 123
+      color: "#4D7CFE"
 
 # 内容分区
 sections:
