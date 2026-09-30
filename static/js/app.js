@@ -11,7 +11,8 @@
     info: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>',
     heart: '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>',
     download: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>',
-    send: '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/></svg>'
+    send: '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/></svg>',
+    cloud: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 16.5a4 4 0 0 0-1-7.9 5.5 5.5 0 0 0-10.6 1.4A3.7 3.7 0 0 0 6.5 16.5H18z"/><path d="M12 13v6M9.5 16.5 12 19l2.5-2.5"/></svg>'
   };
 
   function $(sel, root) { return (root || document).querySelector(sel); }
@@ -71,8 +72,48 @@
     });
   }
 
+  function renderDownloads(config) {
+    var dl = config.downloads;
+    if (!dl) return;
+    var titleEl = $('#downloads-title');
+    var subEl = $('#downloads-sub');
+    var grid = $('#downloads-grid');
+    titleEl.textContent = dl.title || '网盘下载';
+    subEl.textContent = dl.subtitle || '';
+    (dl.items || []).forEach(function (item) {
+      var a = document.createElement('a');
+      a.className = 'download-card';
+      a.href = item.href;
+      a.target = '_blank';
+      a.rel = 'noopener';
+      a.setAttribute('aria-label', item.name);
+      var badge = document.createElement('div');
+      badge.className = 'download-badge';
+      badge.style.background = item.color || 'var(--c1)';
+      badge.textContent = item.badge || (item.name || '').slice(0, 2);
+      var info = document.createElement('div');
+      info.className = 'download-info';
+      var nm = document.createElement('div');
+      nm.className = 'download-name';
+      nm.textContent = item.name || '';
+      var ns = document.createElement('div');
+      ns.className = 'download-note';
+      ns.textContent = item.note || '';
+      info.appendChild(nm);
+      info.appendChild(ns);
+      var arr = document.createElement('div');
+      arr.className = 'download-arrow';
+      arr.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg>';
+      a.appendChild(badge);
+      a.appendChild(info);
+      a.appendChild(arr);
+      grid.appendChild(a);
+    });
+  }
+
   function renderNav(config) {
     var nav = $('#nav-links');
+    if (!nav) return;
     (config.sections || []).forEach(function (sec) {
       var a = document.createElement('a');
       a.href = '#' + sec.id;
@@ -163,13 +204,14 @@
       .add({ targets: '#card img', opacity: [0, 1], scale: [0.5, 1], duration: 600 }, '-=600')
       .add({ targets: '#card h1', opacity: [0, 1], translateY: [20, 0], duration: 500 }, '-=400')
       .add({ targets: '#card h2', opacity: [0, 1], translateY: [20, 0], duration: 500 }, '-=400')
-      .add({ targets: '#card li', opacity: [0, 1], translateY: [20, 0], duration: 500, delay: anime.stagger(80) }, '-=400');
+      .add({ targets: '#card li', opacity: [0, 1], translateY: [20, 0], duration: 500, delay: anime.stagger(80) }, '-=400')
+      .add({ targets: '.download-card', opacity: [0, 1], translateY: [20, 0], duration: 500, delay: anime.stagger(70) }, '-=300');
   }
 
   function setupNavToggle() {
     var toggle = $('#navToggle');
     var links = $('#nav-links');
-    if (toggle) toggle.addEventListener('click', function () { links.classList.toggle('open'); });
+    if (toggle && links) toggle.addEventListener('click', function () { links.classList.toggle('open'); });
   }
 
   function init() {
@@ -178,6 +220,7 @@
       .then(function (config) {
         renderIntro(config);
         renderCard(config);
+        renderDownloads(config);
         renderNav(config);
         renderFooter(config);
         return renderSections(config);
