@@ -17,8 +17,12 @@
 </head>
 <body id="page-top" class="site-loading">
 
+  <!-- background.js 需要的占位元素 -->
+  <svg class="shape" style="display:none"><path></path></svg>
+
   <!-- ====== 首屏 ====== -->
   <section class="content-intro" id="intro">
+    <canvas id="background"></canvas>
     <div class="content-inner">
       <h2 class="content-title">SKY·紫罗兰</h2>
       <h3 class="content-subtitle">Android 悬浮球工具 · ImGui 渲染</h3>
@@ -67,7 +71,7 @@
       </div>
     </div>
 
-    <!-- ====== 网盘下载（静态，无需 JS） ====== -->
+    <!-- ====== 网盘下载 ====== -->
     <section class="downloads-wrap" id="downloads">
       <h2>网盘下载</h2>
       <p class="downloads-sub">选择你常用的网盘，点击卡片即可跳转</p>
@@ -152,6 +156,23 @@
     </footer>
   </section>
 
+  <!-- fluid simulation 配置 -->
+  <script>
+    window.config = {
+      SIM_RESOLUTION: 128, DYE_RESOLUTION: 1024, CAPTURE_RESOLUTION: 512,
+      DENSITY_DISSIPATION: 1, VELOCITY_DISSIPATION: 0.2, PRESSURE: 0.8,
+      PRESSURE_ITERATIONS: 20, CURL: 30, SPLAT_RADIUS: 0.25, SPLAT_FORCE: 6000,
+      SHADING: true, COLORFUL: true, COLOR_UPDATE_SPEED: 10, PAUSED: false,
+      BACK_COLOR: { r: 26, g: 26, b: 46 }, TRANSPARENT: false,
+      BLOOM: true, BLOOM_ITERATIONS: 8, BLOOM_RESOLUTION: 256, BLOOM_INTENSITY: 0.4,
+      BLOOM_THRESHOLD: 0.8, BLOOM_SOFT_KNEE: 0.7,
+      SUNRAYS: true, SUNRAYS_RESOLUTION: 196, SUNRAYS_WEIGHT: 1.0
+    };
+    // background.js 依赖的全局变量
+    var visibilityChangeEvent = 'visibilitychange';
+    var switchPage = { switched: false };
+  </script>
+  <script src="https://cdn.jsdelivr.net/gh/SimonAKing/HomePage@master/src/js/background.js"></script>
   <script src="static/js/app.js"></script>
 </body>
 </html>
