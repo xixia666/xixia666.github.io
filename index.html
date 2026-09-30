@@ -12,7 +12,6 @@
   <title>SKY·紫罗兰</title>
   <link rel="preconnect" href="https://fonts.font.im">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <!-- 字体：优先国内镜像，失败时浏览器会自动回退到系统字体 -->
   <link href="https://fonts.font.im/css2?family=Outfit:wght@200;300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="static/css/style.css">
 </head>
@@ -26,9 +25,12 @@
     <div class="content-inner">
       <h2 class="content-title">SKY·紫罗兰</h2>
       <h3 class="content-subtitle">Android 悬浮球工具 · ImGui 渲染</h3>
-      <a class="enter" id="enterBtn" href="#main">
-        <div class="arrow arrow-1"></div>
-        <div class="arrow arrow-2"></div>
+      <a class="enter" id="enterBtn" href="#main" aria-label="进入">
+        <span class="enter-ring">
+          <svg class="enter-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 5v14M19 12l-7 7-7-7"/>
+          </svg>
+        </span>
       </a>
     </div>
   </section>
