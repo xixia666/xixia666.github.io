@@ -17,7 +17,6 @@
 </head>
 <body id="page-top" class="site-loading">
 
-  <!-- background.js 需要的占位元素 -->
   <svg class="shape" style="display:none"><path></path></svg>
 
   <!-- ====== 首屏 ====== -->
@@ -36,7 +35,6 @@
   <!-- ====== 主屏 ====== -->
   <section class="content-main" id="main">
 
-    <!-- 卡片 -->
     <div class="card-wrap">
       <div id="card">
         <div class="card-inner">
@@ -136,10 +134,10 @@
           <ul>
             <li><strong>快速跑图</strong>：设置地图数量后一键执行，自动收集烛火与光翼</li>
             <li><strong>带人跑图</strong>：烛火/光翼坐标列表，按路线自动瞬移带跑</li>
-            <li><strong>显示与辅助</strong>：显示光翼、��祖、神龛位置，诡异防举、防炸翼炸房</li>
+            <li><strong>显示与辅助</strong>：显示光翼、先祖、神龛位置，诡异防举、防炸翼炸房</li>
             <li><strong>自身娱乐</strong>：衣服染色、先祖衣柜、魔法商店、星座菜单</li>
             <li><strong>玩家娱乐</strong>：友谊树点亮、桌子窥屏、背饰放大、染色预览</li>
-            <li><strong>其他娱乐</strong>：电影院播放器、表情菜单、生物菜单、始终播放器、冥龙无视、场景滤镜、腾云驾雾等</li>
+            <li><strong>其他娱乐</strong>：电影院播放器、表情菜单、生物菜单、始终飞行、冥龙无视、场景滤镜、腾云驾雾等</li>
             <li><strong>社交管理</strong>：批量拉黑、批量删除好友、黑名单管理</li>
             <li><strong>地图任意门</strong>：大地图分组传送</li>
             <li><strong>主题定制</strong>：主题选择、背景透明度、前景特效</li>
@@ -172,25 +170,23 @@
     var switchPage = { switched: false };
   </script>
 
-  <!-- ============ 流体背景：多镜像自动回退加载 ============ -->
+  <!-- ============ 流体背景：多镜像自动回退 ============ -->
   <script>
   (function () {
     var RAW = 'https://raw.githubusercontent.com/SimonAKing/HomePage/master/src/js/background.js';
     var GH = 'SimonAKing/HomePage@master';
-    // 按顺序尝试，实测可用节点优先
     var NODES = [
-      'static/js/background.js',                                     // 1. 本地（最稳，若有）
-      'https://cdn.jsdelivr.net/gh/' + GH + '/src/js/background.js', // 2. jsDelivr 主
+      'static/js/background.js',
+      'https://cdn.jsdelivr.net/gh/' + GH + '/src/js/background.js',
       'https://fastly.jsdelivr.net/gh/' + GH + '/src/js/background.js',
       'https://gcore.jsdelivr.net/gh/' + GH + '/src/js/background.js',
       'https://testingcf.jsdelivr.net/gh/' + GH + '/src/js/background.js',
       'https://jsdelivr.b-cdn.net/gh/' + GH + '/src/js/background.js',
-      'https://ghfast.top/' + RAW,                                   // GitHub 加速镜像
+      'https://ghfast.top/' + RAW,
       'https://gh-proxy.com/' + RAW,
       'https://ghproxy.net/' + RAW,
       RAW
     ];
-
     var TIMEOUT = 6000;
 
     function tryLoad(url) {
@@ -210,10 +206,9 @@
           if (settled) return;
           settled = true;
           clearTimeout(timer);
-          // 兜底：若 DOMContentLoaded 已过，手动触发一次让 background.js 启动
           try {
-            if (!window.__fluidRunning) {
-              window.__fluidRunning = true;
+            if (!window.__fluidBooted) {
+              window.__fluidBooted = true;
               window.dispatchEvent(new Event('DOMContentLoaded'));
             }
           } catch (e) {}
