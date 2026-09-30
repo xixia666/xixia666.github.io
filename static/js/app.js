@@ -1,7 +1,7 @@
 /* ============================================================
    app.js — SKY·紫罗兰 主页交互（零依赖）
-   首屏 WebGL 流体背景由 background.js 负责；
-   本脚本只负责首屏→主屏的过渡。
+   1) 首屏 → 主屏过渡
+   2) 平滑滚动到网盘下载区块（带落地高亮）
    ============================================================ */
 
 (function () {
@@ -25,16 +25,13 @@
   function enterMain() {
     if (!intro || !main) return;
 
-    // 通知 background.js 停止响应鼠标/触摸事件
     if (window.switchPage) window.switchPage.switched = true;
 
-    // 首屏内容淡出
     if (inner) {
       inner.style.transition = 'opacity .3s ease';
       inner.style.opacity = '0';
     }
 
-    // 流体画布淡出
     var bgCanvas = document.getElementById('background');
     if (bgCanvas) {
       bgCanvas.style.transition = 'opacity .6s ease';
@@ -42,14 +39,12 @@
       setTimeout(function () { bgCanvas.style.display = 'none'; }, 650);
     }
 
-    // 首屏上滑
     intro.style.transition = 'transform .9s cubic-bezier(.76,0,.24,1), opacity .9s cubic-bezier(.76,0,.24,1)';
     requestAnimationFrame(function () {
       intro.style.transform = 'translateY(-100%)';
       intro.style.opacity = '0';
     });
 
-    // 主屏淡入
     main.classList.add('visible');
     document.body.style.overflow = 'auto';
 
@@ -58,12 +53,51 @@
     }, 950);
   }
 
+  function scrollToDownloads(behavior) {
+    var target = document.getElementById('downloads');
+    var scroller = document.getElementById('main');
+    if (!target) return;
+
+    if (scroller) {
+      var top = target.getBoundingClientRect().top -
+                scroller.getBoundingClientRect().top +
+                scroller.scrollTop - 24;
+      try {
+        scroller.scrollTo({ top: top, behavior: behavior || 'smooth' });
+      } catch (e) {
+        scroller.scrollTop = top;
+      }
+    } else {
+      target.scrollIntoView({ behavior: behavior || 'smooth', block: 'start' });
+    }
+
+    target.classList.remove('flash');
+    void target.offsetWidth;
+    target.classList.add('flash');
+    setTimeout(function () { target.classList.remove('flash'); }, 1800);
+  }
+
   if (enterBtn) {
     enterBtn.addEventListener('click', function (e) {
       e.preventDefault();
       enterMain();
     });
   }
+
+  Array.prototype.forEach.call(
+    document.querySelectorAll('.scroll-to-downloads'),
+    function (el) {
+      el.addEventListener('click', function (e) {
+        e.preventDefault();
+        if (intro && intro.style.display !== 'none') {
+          enterMain();
+          setTimeout(function () { scrollToDownloads('smooth'); }, 1000);
+        } else {
+          scrollToDownloads('smooth');
+        }
+      });
+    }
+  );
 
   document.addEventListener('keydown', function (e) {
     if ((e.key === 'Enter' || e.key === ' ') && intro && intro.style.display !== 'none') {
